@@ -3,8 +3,8 @@
 ## Databricks Bronze Lakeflow Declarative Pipeline
 
 This repository includes a Lakeflow Declarative Pipeline source file that reads
-Databricks sample sales-order CSV files from `/databricks-datasets` and writes
-them to a Bronze streaming table.
+Databricks sample retail CSV files from `/databricks-datasets` and writes them
+to Bronze streaming tables.
 
 ### Pipeline source
 
@@ -14,19 +14,26 @@ them to a Bronze streaming table.
 
 1. In Databricks, create a new **Lakeflow Declarative Pipeline**.
 2. Add `pipelines_bronze_orders.py` as a Python source file.
-3. Choose the target catalog and schema where the Bronze table should be
+3. Choose the target catalog and schema where the Bronze tables should be
    published.
 4. Run the pipeline.
 
-The pipeline creates the managed streaming table
-`bronze_sample_sales_orders` with `quality = bronze` table metadata. It uses
-Auto Loader to incrementally read CSV files from:
+The pipeline creates these managed streaming tables with `quality = bronze`
+table metadata:
 
-```text
-/databricks-datasets/retail-org/sales_orders/
-```
+- `bronze_sample_sales_orders`, which reads from:
 
-The Bronze table preserves the sample dataset columns and adds ingestion
+  ```text
+  /databricks-datasets/retail-org/sales_orders/
+  ```
+
+- `bronze_sample_customers`, which reads from:
+
+  ```text
+  /databricks-datasets/retail-org/customers/
+  ```
+
+Both Bronze tables preserve the sample dataset columns and add ingestion
 metadata columns:
 
 - `_bronze_ingested_at`
