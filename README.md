@@ -4,7 +4,7 @@
 
 This repository includes a Lakeflow Declarative Pipeline source file that reads
 Databricks sample retail CSV files from `/databricks-datasets` and writes them
-to Bronze streaming tables.
+to Bronze materialized views.
 
 ### Pipeline source
 
@@ -18,7 +18,7 @@ to Bronze streaming tables.
    published.
 4. Run the pipeline.
 
-The pipeline creates these managed streaming tables with `quality = bronze`
+The pipeline creates these managed materialized views with `quality = bronze`
 table metadata:
 
 - `bronze_sample_sales_orders`, which reads from:
@@ -33,7 +33,7 @@ table metadata:
   /databricks-datasets/retail-org/customers/
   ```
 
-Both Bronze tables preserve the sample dataset columns and add ingestion
+Both Bronze materialized views preserve the sample dataset columns and add ingestion
 metadata columns:
 
 - `_bronze_ingested_at`
